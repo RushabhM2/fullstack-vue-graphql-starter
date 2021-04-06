@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const POstSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -33,7 +33,7 @@ const POstSchema = new mongoose.Schema({
     messages: [{
         messageBody: {
             type: String,
-            requried: true
+            required: true
         },
         messageDate: {
             type: Date,
