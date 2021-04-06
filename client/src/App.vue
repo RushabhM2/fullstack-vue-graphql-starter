@@ -1,6 +1,8 @@
 <template lang="pug">
   v-app
     v-navigation-drawer(app temporary fixed v-model="sideNav")
+      v-btn(flat v-for="i in sideNavItems" :key='i.title' :to="i.link")
+        | {{i.title}}
     v-app-bar(fixed color="primary" dark)
       v-app-bar-nav-Icon(@click="toggleSideNav")
       v-app-bar-title
@@ -14,7 +16,8 @@
     main
     v-spacer
       v-container.mt-4
-        router-view
+        transition(name="fade")
+          router-view
 </template>
 
 <script>
@@ -33,6 +36,13 @@ export default {
         { icon: 'create', title: 'Sign Up', link: '/signup' },
       ];
     },
+    sideNavItems() {
+      return [
+        { icon: 'chat', title: 'Posts', link: '/posts' },
+        { icon: 'lock_open', title: 'Sign In', link: '/signin' },
+        { icon: 'create', title: 'Sign Up', link: '/signup' },
+      ];
+    },
   },
   methods: {
     toggleSideNav() {
@@ -41,3 +51,16 @@ export default {
   },
 };
 </script>
+
+<style>
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-property: opacity;
+    transition-duration: 0.2s;
+  }
+
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0;
+  }
+</style>
